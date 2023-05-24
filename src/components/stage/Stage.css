@@ -1,0 +1,9 @@
+.container-stage-form {
+	display: flex;
+	gap: 10px;
+	margin: 20px;
+}
+
+.container-stage {
+	margin: 20px;
+}
