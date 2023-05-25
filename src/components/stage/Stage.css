@@ -18,10 +18,9 @@
 	flex-grow: 1;
 	flex-shrink: 1;
 	flex-basis: 0%;
-	/* background: #d3d3d3; */
-	display: -moz-box;
-	/* display: flex; */
 	-moz-box-orient: vertical;
-	/* flex-direction: column; */
-
+	margin: auto;
+	background-color: #efefef;
+	border: 1px dashed #aaa;
+	max-width: 100%;
 }

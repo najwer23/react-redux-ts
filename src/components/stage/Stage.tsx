@@ -10,30 +10,27 @@ function Stage() {
 	const projects = useAppSelector((state: any) => state.stage.projects);
 	const status = useAppSelector((state: any) => state.stage.status);
 	const projectId = useRef<HTMLInputElement>(null)
-	const dispatch = useAppDispatch();
-	let cssCanvas = {}
-	let viewBox;
 
-	function handleSubmit(e: any) {
-		e.preventDefault()
-		dispatch(StageSlice.getProject(projectId.current!.value));
-	}
+	const dispatch = useAppDispatch();
+
+	let cssCanvas: {
+		aspectRatio?: number
+	} = {};
+
+	let viewBox: string = "";
 
 	if (status === "project") {
 		cssCanvas = {
 			aspectRatio: (projects.project.width) / (projects.project.height),
-			margin: "auto",
-			backgroundColor: "#efefef",
-			border: "1px dashed #aaa",
-			maxWidth: "100%"
 		}
 
 		viewBox = `0 0 ${projects.project.width} ${projects.project.height}`
 	}
 
-
-	console.log(projects)
-	console.log(status)
+	function handleSubmit(e: any) {
+		e.preventDefault()
+		dispatch(StageSlice.getProject(projectId.current!.value));
+	}
 
   return (
 	<>
@@ -55,44 +52,42 @@ function Stage() {
 			{
 				status === "project" &&
 				(
-					<div className='container-stage'>
-						Name: {projects.project.name} <br />
-						ID: {projects.project.id}
-					</div>
-				)
-			}
+					<>
+						<div className='container-stage'>
+							Name: {projects.project.name} <br />
+							ID: {projects.project.id}
+						</div>
 
-
-			{
-				status === "project" &&
-				(
-					<div className="container-stage-canvas" style={cssCanvas}>
-
-						<svg
-							width="100%"
-							height="100%"
-							preserveAspectRatio="xMidYMid meet"
-							>
+						<div className="container-stage-canvas" style={cssCanvas}>
 
 							<svg
 								width="100%"
 								height="100%"
-								viewBox={viewBox}
+								preserveAspectRatio="xMidYMid meet"
 							>
-								{
-									projects.project.items.map((item: any) => {
-										return (
-											<>
-												<Figure dimensions={item} />
-											</>
+
+								<svg
+									width="100%"
+									height="100%"
+									viewBox={viewBox}
+								>
+									{
+										projects.project.items.map((item: any) => {
+											return (
+												<>
+													<Figure dimensions={item} />
+												</>
 											)
-									})
-								}
+										})
+									}
+								</svg>
 							</svg>
-						</svg>
-					</div>
+						</div>
+					</>
 				)
 			}
+
+
 
 		</div>
 	</>
