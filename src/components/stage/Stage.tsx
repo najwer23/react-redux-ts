@@ -5,6 +5,7 @@ import Button from "../buttons/Button";
 import Figure from "./Figure"
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import * as StageSlice from "../../features/stage/StageSlice";
+import { Item } from "../../types";
 
 function Stage() {
 	const projects = useAppSelector((state: any) => state.stage.projects);
@@ -78,7 +79,7 @@ function Stage() {
 									viewBox={viewBox}
 								>
 									{
-										projects.project.items.map((item: any, index: number) => {
+										projects.project.items.map((item: Item, index: number) => {
 											return (
 												<Figure key={index} dimensions={item} />
 											)

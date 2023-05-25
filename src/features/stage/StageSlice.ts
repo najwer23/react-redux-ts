@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { InitData, Projects, ErrorMsg } from "../../types";
 
-const initialState = {
+const initialState: {
+	initData: InitData | null;
+	projects: Projects | null;
+	status: "init" | "idle" | "project" | "error";
+	error: ErrorMsg | null;
+} = {
 	initData: null,
 	projects: null,
 	status: "idle",
@@ -26,7 +32,7 @@ export const StageSlice = createSlice({
 	}
 });
 
-export const getProject = (projectId?: any) => async (dispatch: any) => {
+export const getProject = (projectId?: string) => async (dispatch: any) => {
 	try {
 
 		let URL, res, data;

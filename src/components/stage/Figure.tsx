@@ -1,29 +1,36 @@
-export default function Figure(props: any) {
+import { FigureProps } from "../../types";
+import { FC } from "react";
 
-	if (props.dimensions.type === "ellipse") {
+const Figure: FC<FigureProps> = ({dimensions}) => {
+	if (dimensions.type === "ellipse") {
 		return (
 			<>
-				<Ellipse dimensions={props.dimensions} />
+				<Ellipse dimensions={dimensions} />
 			</>
 		);
 	}
 
-	if (props.dimensions.type === "rectangle") {
+	if (dimensions.type === "rectangle") {
 		return (
 			<>
-				<Rect dimensions={props.dimensions} />
+				<Rect dimensions={dimensions} />
 			</>
 		);
 	}
 
 	//todo another one
-
 	return <></>
 }
 
+export default Figure;
 
-function Rect(props: any) {
-	let dim = props.dimensions;
+
+
+
+
+
+const Rect: FC<FigureProps> = ({dimensions}) => {
+	const dim = dimensions;
 	const transform = `translate(-${dim.width/2}, -${dim.height/2}) rotate(${dim.rotation}, ${dim.x + dim.width/2}, ${dim.y + dim.height/2})`
 
 		return (
@@ -56,8 +63,8 @@ function Rect(props: any) {
 		)
 }
 
-function Ellipse(props: any) {
-	let dim = props.dimensions;
+const Ellipse: FC<FigureProps> = ({dimensions}) => {
+	let dim = dimensions;
 	const transform = `rotate(${dim.rotation}, ${dim.x}, ${dim.y})`
 
 	return (
