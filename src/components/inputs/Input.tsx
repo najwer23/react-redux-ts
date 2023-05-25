@@ -1,17 +1,27 @@
-export default function Input(props: any) {
+import { FC, InputHTMLAttributes } from "react";
 
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+	id: string;
+	label: string;
+	innerRef: React.RefObject<HTMLInputElement>;
+	type: string;
+}
+
+const Input: FC<InputProps> = ({id, label, innerRef, type}) => {
 	return (
 		<>
 			<div className="inputTextWithLabel">
-				<label htmlFor={props.id}> {props.label} </label>
+				<label htmlFor={id}> {label}</label>
 
 				<input
-					ref={props.innerRef}
-					type={props.type}
-					name={props.id}
-					id={props.id}
+					ref={innerRef}
+					type={type}
+					name={id}
+					id={id}
 				/>
 			</div>
 		</>
 	);
 }
+
+export default Input;

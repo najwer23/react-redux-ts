@@ -1,13 +1,21 @@
-export default function Button(props: any) {
+import { FC, InputHTMLAttributes } from "react";
 
+interface ButtonProps extends InputHTMLAttributes<HTMLInputElement> {
+	disabled?: boolean;
+	text: String;
+}
+
+const Button: FC<ButtonProps> = ({disabled, text}) => {
 	return (
 		<>
 			<button
 				type="submit"
-				disabled={props.disabled}
+				disabled={disabled}
 			>
-				{props.text}
+				{text}
 			</button>
 		</>
 	);
 }
+
+export default Button;
