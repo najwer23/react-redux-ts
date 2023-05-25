@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import "./Stage.css";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
