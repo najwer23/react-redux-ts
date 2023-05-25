@@ -31,7 +31,7 @@ export const getProject = (projectId?: any) => async (dispatch: any) => {
 
 		let URL, res, data;
 
-		if (projectId == "") {
+		if (projectId === "") {
 			URL = "https://recruitment01.vercel.app/api/init";
 			res = await fetch(URL)
 			data = await res.json();
