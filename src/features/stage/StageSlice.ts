@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	initData: null,
-	data: null,
+	projects: null,
 	status: "idle",
 	error: null
 };
@@ -16,7 +16,7 @@ export const StageSlice = createSlice({
 			state.status = "init"
 		},
 		setProjectState: (state, action) => {
-			state.data = action.payload
+			state.projects = action.payload
 			state.status = "project"
 		},
 		setErrorState: (state, action) => {

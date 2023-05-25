@@ -6,8 +6,8 @@ import { useAppSelector, useAppDispatch } from "../../hooks";
 import * as StageSlice from "../../features/stage/StageSlice";
 
 function Stage() {
-	const stageData = useAppSelector((state: any) => state.stage.data);
-	const stageDataStatus = useAppSelector((state: any) => state.stage.status);
+	const projects = useAppSelector((state: any) => state.stage.projects);
+	const status = useAppSelector((state: any) => state.stage.status);
 	const projectId = useRef<HTMLInputElement>(null)
 	const dispatch = useAppDispatch();
 
@@ -16,8 +16,8 @@ function Stage() {
 		dispatch(StageSlice.getProject(projectId.current!.value));
 	}
 
-	console.log(stageData)
-	console.log(stageDataStatus)
+	console.log(projects)
+	console.log(status)
 
   return (
 	<>
@@ -37,11 +37,11 @@ function Stage() {
 			<hr />
 
 			{
-				stageData &&
+				projects &&
 				(
 					<div className='container-stage'>
-						Name: {stageData.project.name} <br />
-						ID: {stageData.project.id}
+						Name: {projects.project.name} <br />
+						ID: {projects.project.id}
 					</div>
 				)
 			}
