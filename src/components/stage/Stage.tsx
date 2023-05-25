@@ -27,7 +27,12 @@ function Stage() {
 		viewBox = `0 0 ${projects.project.width} ${projects.project.height}`
 	}
 
-	function handleSubmit(e: any) {
+	function validProjectId() {
+		// todo validate input
+		// console.log(projectId.current!.value)
+	}
+
+	function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
 		e.preventDefault()
 		dispatch(StageSlice.getProject(projectId.current!.value));
 	}
@@ -42,6 +47,7 @@ function Stage() {
 					id={"projectId"}
 					label={"Project ID"}
 					type="text"
+					onBlur={validProjectId}
 				/>
 
 				<Button text={"Fetch"} />
@@ -72,11 +78,9 @@ function Stage() {
 									viewBox={viewBox}
 								>
 									{
-										projects.project.items.map((item: any) => {
+										projects.project.items.map((item: any, index: number) => {
 											return (
-												<>
-													<Figure dimensions={item} />
-												</>
+												<Figure key={index} dimensions={item} />
 											)
 										})
 									}
