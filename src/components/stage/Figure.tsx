@@ -26,18 +26,29 @@ const Figure: FC<FigureProps> = ({dimensions}) => {
 
 export default Figure;
 
+
+
+
+
+
+const toRadians = (angle: number) => angle * (Math.PI / 180);
+
+
+
+
+
 // workaround for outline which doesnt work on firefox
 const BBRect: FC<FigureProps> = ({dimensions}) => {
 	const dimProps = dimensions;
 
-	const rA = dimProps.rotation * (Math.PI / 180)
-	const h = dimProps.height;
-	const w = dimProps.width;
-	const cosA = Math.abs(Math.cos(rA));
-  const sinA = Math.abs(Math.sin(rA));
+	let rA = toRadians(dimProps.rotation)
+	let h = dimProps.height;
+	let w = dimProps.width;
+	let cosA = Math.abs(Math.cos(rA));
+  let sinA = Math.abs(Math.sin(rA));
 
-	const bbH = w * sinA + h * cosA;
-  const bbW = w * cosA + h * sinA;
+	let bbH = w * sinA + h * cosA;
+  let bbW = w * cosA + h * sinA;
 
   let bbX = dimProps.x - (bbW) /2
   let bbY = dimProps.y - (bbH) /2
@@ -51,13 +62,12 @@ const BBRect: FC<FigureProps> = ({dimensions}) => {
 
 	return (
 			<>
-				<g style={{ outline: "1px solid green", outlineOffset: "0px" }}>
+				<g>
 					<rect
 						x={dim.x}
 						y={dim.y}
 						width={dim.width}
 						height={dim.height}
-						// transform={transform}
 						stroke='black'
 						stroke-width='1'
 						fill='transparent'
@@ -77,36 +87,36 @@ const BBEllipse: FC<FigureProps> = ({dimensions}) => {
 	let centerY = dimProps.y;
 	let radiusX = dimProps.width/2;
 	let radiusY = dimProps.height/2;
-	let degrees = dimProps.rotation;
+	let rA = dimProps.rotation;
 
-	let radians = degrees * (Math.PI / 180);
+	let radians = toRadians(rA);
 	let radians90 = radians + Math.PI / 2;
 	let ux = radiusX * Math.cos(radians);
 	let uy = radiusX * Math.sin(radians);
 	let vx = radiusY * Math.cos(radians90);
 	let vy = radiusY * Math.sin(radians90);
 
-	let width = Math.sqrt(ux * ux + vx * vx) * 2;
-	let height = Math.sqrt(uy * uy + vy * vy) * 2;
-	let x = centerX - (width / 2);
-	let y = centerY - (height / 2);
+	let w = Math.sqrt(ux * ux + vx * vx) * 2;
+	let h = Math.sqrt(uy * uy + vy * vy) * 2;
+
+	let x = centerX - (w / 2);
+	let y = centerY - (h / 2);
 
 	let dim = {
 		x: x,
 		y: y,
-		width: width,
-		height: height,
+		width: w,
+		height: h,
 	}
 
 	return (
 			<>
-				<g style={{ outline: "1px solid green", outlineOffset: "0px" }}>
+				<g>
 					<rect
 						x={dim.x}
 						y={dim.y}
 						width={dim.width}
 						height={dim.height}
-						// transform={transform}
 						stroke='black'
 						stroke-width='1'
 						fill='transparent'
@@ -115,8 +125,6 @@ const BBEllipse: FC<FigureProps> = ({dimensions}) => {
 			</>
 		)
 }
-
-
 
 
 
@@ -153,6 +161,8 @@ const Rect: FC<FigureProps> = ({dimensions}) => {
 			</>
 		)
 }
+
+
 
 const Ellipse: FC<FigureProps> = ({dimensions}) => {
 	let dim = dimensions;
