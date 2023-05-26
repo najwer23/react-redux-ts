@@ -4,9 +4,11 @@ export interface InitData {
 	modified: number;
 }
 
+export type ItemType = 'rectangle' | 'ellipse';
+
 export interface Item {
 	id: string;
-	type: 'rectangle' | 'ellipse';
+	type: ItemType;
 	color: string;
 	rotation: number;
 	x: number;

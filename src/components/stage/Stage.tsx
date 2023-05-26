@@ -10,6 +10,7 @@ import { Item } from "../../types";
 function Stage() {
 	const projects = useAppSelector((state: any) => state.stage.projects);
 	const status = useAppSelector((state: any) => state.stage.status);
+	const error = useAppSelector((state: any) => state.stage.error);
 	const projectId = useRef<HTMLInputElement>(null)
 
 	const dispatch = useAppDispatch();
@@ -55,6 +56,18 @@ function Stage() {
 			</form>
 
 			<hr />
+
+			{
+				status === "error" &&
+				(
+					<div className='container-stage'>
+						<>error!</> <br />
+						<>{error.error}</> <br />
+						<>{error.message}</> <br />
+					</div>
+				)
+
+			}
 
 			{
 				status === "project" &&

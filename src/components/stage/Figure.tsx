@@ -20,13 +20,10 @@ const Figure: FC<FigureProps> = ({dimensions}) => {
 		);
 	}
 
-	//todo another one
 	return <></>
 }
 
 export default Figure;
-
-
 
 
 
@@ -36,8 +33,6 @@ const toRadians = (angle: number) => angle * (Math.PI / 180);
 
 
 
-
-// workaround for outline which doesnt work on firefox
 const BBRect: FC<FigureProps> = ({dimensions}) => {
 	const dimProps = dimensions;
 
@@ -69,7 +64,7 @@ const BBRect: FC<FigureProps> = ({dimensions}) => {
 						width={dim.width}
 						height={dim.height}
 						stroke='black'
-						stroke-width='1'
+						strokeWidth='1'
 						fill='transparent'
 					/>
 				</g>
@@ -78,8 +73,6 @@ const BBRect: FC<FigureProps> = ({dimensions}) => {
 }
 
 
-
-// workaround for outline which doesnt work on firefox
 const BBEllipse: FC<FigureProps> = ({dimensions}) => {
 	const dimProps = dimensions;
 
@@ -118,7 +111,7 @@ const BBEllipse: FC<FigureProps> = ({dimensions}) => {
 						width={dim.width}
 						height={dim.height}
 						stroke='black'
-						stroke-width='1'
+						strokeWidth='1'
 						fill='transparent'
 					/>
 				</g>
