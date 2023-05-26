@@ -2,6 +2,7 @@
 	"name": "react-redux-ts",
 	"version": "0.1.0",
 	"private": false,
+	"homepage": "https://najwer23.github.io/react-redux-ts",
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.5",
 		"@testing-library/jest-dom": "^5.16.5",
