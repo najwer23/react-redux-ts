@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./Stage.css";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
@@ -39,6 +39,10 @@ function Stage() {
 		dispatch(StageSlice.getProject(projectId.current!.value));
 	}
 
+	useEffect(()=> {
+		dispatch(StageSlice.getProject(projectId.current!.value));
+	},[])
+
   return (
 	<>
 		<div className='container'>
@@ -47,11 +51,11 @@ function Stage() {
 				<Input
 					innerRef={projectId}
 					id={"projectId"}
-					label={"Project ID"}
+					label={"Project ID "}
 					type="text"
 					onBlur={validProjectId}
 				/>
-
+				{" "}
 				<Button text={"Fetch"} />
 			</form>
 

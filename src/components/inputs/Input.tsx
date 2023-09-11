@@ -6,10 +6,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	innerRef: React.RefObject<HTMLInputElement>;
 	type: string;
 	onBlur?: any;
+	value?: string;
 }
 
 
-const Input: FC<InputProps> = ({id, label, innerRef, type, onBlur}) => {
+const Input: FC<InputProps> = ({id, label, innerRef, type, onBlur, value}) => {
 	function handleBlur(e: React.FocusEvent<HTMLElement>) {
 		if (onBlur !== undefined) {
 			onBlur(e);
@@ -27,6 +28,7 @@ const Input: FC<InputProps> = ({id, label, innerRef, type, onBlur}) => {
 					type={type}
 					name={id}
 					id={id}
+					value={value}
 				/>
 			</div>
 		</>
